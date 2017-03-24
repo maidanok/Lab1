@@ -2,15 +2,17 @@ package logic.filter;
 
 import datalayer.datamodel.Track;
 
+import java.time.LocalTime;
+
 /**
  * Created by Pasha on 23.03.2017.
  */
 public class SizeFilter extends Filter{
-    private Integer minSize;
-    private Integer maxSize;
+    private LocalTime minSize;
+    private LocalTime maxSize;
 
-    public SizeFilter(Integer minSize, Integer maxSize) throws Exception {
-        if (minSize>=0&&maxSize>minSize) {
+    public SizeFilter(LocalTime minSize, LocalTime maxSize) throws Exception {
+        if (minSize.getSecond()>=0&&maxSize.getSecond()>minSize.getSecond()) {
             this.minSize = minSize;
             this.maxSize = maxSize;
         } else {
@@ -21,7 +23,7 @@ public class SizeFilter extends Filter{
 
     @Override
     public boolean isSatisfy(Track track) {
-        Integer syze=track.getSize();
-        return (syze>=minSize&&syze<=maxSize);
+        LocalTime syze=track.getSize();
+        return (syze.getSecond()>=minSize.getSecond()&&syze.getSecond()<=maxSize.getSecond());
     }
 }

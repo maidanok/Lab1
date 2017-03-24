@@ -4,7 +4,7 @@ import datalayer.datamodel.Track;
 import datalayer.storage.TrackStorage;
 import datalayer.storage.TrackStorageImpl;
 
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,18 +15,20 @@ public class InsertingTrack {
         TrackStorage trackStorage = new TrackStorageImpl();
 
         Track track = new Track();
+        List<Track> myTrack=new ArrayList<>();
 /*
-        track.setName("Снег");
-        track.setSinger("Tracktor Bowling");
-        track.setStyle("рок");
-        track.setSize(548);
+        track.setName("Nuthin' But A 'G' Thang");
+        track.setSinger("Snoop Dogg & Dr. Dre");
+        track.setStyle("рэп");
+        track.setSize("00:03:55");
         track.setRating(5);
-
+        myTrack.add(track);
         trackStorage.addTrack(track);
 
 */
         for (int i = 0; i < trackStorage.getAllTrack().size(); i++) {
             System.out.println(trackStorage.getAllTrack().get(i));
         }
+        System.out.println(trackStorage.getSize());
     }
 }

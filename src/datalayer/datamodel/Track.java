@@ -1,13 +1,15 @@
 package datalayer.datamodel;
 
 import java.io.Serializable;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class Track implements Serializable {
 
     private String name;
     private String singer;
     private String style;
-    private Integer size;
+    private LocalTime size;
     private Integer rating;
 
 
@@ -35,12 +37,12 @@ public class Track implements Serializable {
         this.style = style;
     }
 
-    public Integer getSize() {
+    public LocalTime getSize() {
         return size;
     }
 
-    public void setSize(int size) {
-        this.size = size;
+    public void setSize(String string) {
+        this.size = LocalTime.parse(string, DateTimeFormatter.ISO_LOCAL_TIME);
     }
 
     public Integer getRating() {
@@ -53,8 +55,8 @@ public class Track implements Serializable {
 
     @Override
     public String toString() {
-        return "Track [name=" + name + ", singer=" + singer + ", style=" + style + 
-               ", size=" + size + ", rating=" + rating + "]";
+        return "Track [name=" + name + ", singer=" + singer + ", style=" + style +
+                ", size=" + size + ", rating=" + rating + "]";
     }
 
 }
