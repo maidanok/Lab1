@@ -12,7 +12,7 @@ public class SizeFilter extends Filter{
     private LocalTime maxSize;
 
     public SizeFilter(LocalTime minSize, LocalTime maxSize) throws Exception {
-        if (minSize.getSecond()>=0&&maxSize.getSecond()>minSize.getSecond()) {
+        if (minSize.isAfter(LocalTime.MIN)&&minSize.isBefore(maxSize)) {
             this.minSize = minSize;
             this.maxSize = maxSize;
         } else {
@@ -24,6 +24,6 @@ public class SizeFilter extends Filter{
     @Override
     public boolean isSatisfy(Track track) {
         LocalTime syze=track.getSize();
-        return (syze.getSecond()>=minSize.getSecond()&&syze.getSecond()<=maxSize.getSecond());
+        return (syze.isBefore(maxSize)&&syze.isAfter(minSize));
     }
 }

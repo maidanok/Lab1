@@ -108,7 +108,7 @@ public class MenuController {
                 break;
             case (2):
                 filtrator = new FiltratorImpl(trackStorage);
-                filterTrack = filtrator.filter(new SizeFilter(LocalTime.parse("03:30"), LocalTime.parse("04:30")));
+                filterTrack = filtrator.filter(new SizeFilter(LocalTime.parse("00:03:30"), LocalTime.parse("00:04:30")));
                 this.printAlltrack(filterTrack);
                 break;
             case (3):
