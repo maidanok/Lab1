@@ -1,5 +1,6 @@
 package test;
 
+import datalayer.datamodel.Rock;
 import datalayer.datamodel.Track;
 
 /**
@@ -7,10 +8,9 @@ import datalayer.datamodel.Track;
  */
 public class TestNewTrack {
     public static void main(String[] args){
-        Track track = new Track();
+        Track track = new Rock();
         track.setName("name");
         track.setSinger("singer");
-        track.setStyle("style");
         track.setSize("03:40:20");
         track.setRating(3);
 

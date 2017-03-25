@@ -4,14 +4,22 @@ import java.io.Serializable;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-public class Track implements Serializable {
+public abstract class Track implements Serializable {
 
     private String name;
     private String singer;
-    private String style;
     private LocalTime size;
     private Integer rating;
+    String style;
+    String melody;
 
+    public String getStyle() {
+        return style;
+    }
+
+    public String getMelody() {
+        return melody;
+    }
 
     public String getName() {
         return name;
@@ -27,14 +35,6 @@ public class Track implements Serializable {
 
     public void setSinger(String singer) {
         this.singer = singer;
-    }
-
-    public String getStyle() {
-        return style;
-    }
-
-    public void setStyle(String style) {
-        this.style = style;
     }
 
     public LocalTime getSize() {

@@ -2,38 +2,46 @@ package datalayer.storage;
 
 import datalayer.datamodel.Track;
 
-import java.io.IOException;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TrackStorageImpl implements TrackStorage {
-    private DataConnector dataConnector = new DataConnectorImpl();
-    private List <Track> myTracks =new ArrayList<>();
+    private DataConnector dataConnector = DataConnectorImpl.getInstance();
+    private List<Track> myTracks;
 
-    public TrackStorageImpl() throws IOException, ClassNotFoundException {
-        myTracks =this.getAllTrack();
-
+    public TrackStorageImpl() {
+        try {
+            myTracks = this.getAllTrack();
+        } catch (NullPointerException e){
+            e.printStackTrace();
+            myTracks=new ArrayList<>();
+        }
     }
+
     public TrackStorageImpl(List<Track> myTracks) {
         this.myTracks = myTracks;
     }
 
     //выдача полного списка треков
     @Override
-    public List<Track> getAllTrack() throws IOException, ClassNotFoundException {
-        List<Track> allTrack = new ArrayList<>();
-        allTrack = (List<Track>) dataConnector.readData();
-        return allTrack;
+    public List<Track> getAllTrack() {
+        try {
+            myTracks = (List<Track>) dataConnector.readData();
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
+
+        return myTracks;
     }
 
     @Override
-    public LocalTime getSize() throws IOException, ClassNotFoundException {
+    public LocalTime getSize() {
         LocalTime size;
-        size=LocalTime.parse("00:00:00", DateTimeFormatter.ISO_LOCAL_TIME);
-        for (Track track: myTracks){
-            size=size.plusMinutes(track.getSize().getMinute()).plusSeconds(track.getSize().getSecond());
+        size = LocalTime.parse("00:00:00", DateTimeFormatter.ISO_LOCAL_TIME);
+        for (Track track : myTracks) {
+            size = size.plusMinutes(track.getSize().getMinute()).plusSeconds(track.getSize().getSecond());
         }
         return size;
     }
@@ -41,7 +49,7 @@ public class TrackStorageImpl implements TrackStorage {
 
     //добавление трека и выдача полного списка
     @Override
-    public void addTrack(Track track) throws IOException, ClassNotFoundException {
+    public void addTrack(Track track) {
         List<Track> allTrack = new ArrayList<>();
         allTrack = (List<Track>) dataConnector.readData();
         allTrack.add(track);
@@ -51,8 +59,16 @@ public class TrackStorageImpl implements TrackStorage {
 
     //сохранение списка треков
     @Override
-    public void saveAllTrack(List<Track> myTracks) throws IOException, ClassNotFoundException {
+    public void saveAllTrack(List<Track> myTracks) {
         dataConnector.saveData(myTracks);
     }
+
+    @Override
+    public void playTracks() {
+        for (Track track:myTracks){
+            System.out.println(track.getMelody());
+        }
+    }
+
 
 }
