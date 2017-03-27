@@ -21,7 +21,7 @@ public class FiltratorImpl implements Filtrator {
     }
 
     @Override
-    public List<Track> filter(Filter filter) throws Exception {
+    public List<Track> filter(Filter filter) {
         List<Track> tracks = storage.getAllTrack();
         List<Track> result = new ArrayList<>();
         for (Track track : tracks) {
@@ -33,7 +33,7 @@ public class FiltratorImpl implements Filtrator {
     }
 
     @Override
-    public void filter(Filter filter, List<Track> destTrack) throws Exception {
+    public void filter(Filter filter, List<Track> destTrack) {
         List<Track> srcTrack = storage.getAllTrack();
         for (Track track : srcTrack) {
             if (filter.isSatisfy(track)) {

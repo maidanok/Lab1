@@ -5,6 +5,6 @@ import datalayer.datamodel.Track;
 /**
  * Created by Pasha on 23.03.2017.
  */
-public abstract class Filter {
-    abstract boolean isSatisfy(Track track);
+public interface Filter {
+    boolean isSatisfy(Track track);
 }

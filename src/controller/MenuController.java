@@ -23,10 +23,10 @@ public class MenuController {
     private KeyboardController keyboardController = new KeyboardController();
     private TrackStorage trackStorage = new TrackStorageImpl();
 
-    public MenuController() throws IOException, ClassNotFoundException {
+    public MenuController() {
     }
 
-    protected void shouMainMenu() throws Exception {
+    protected void shouMainMenu() {
         List<Track> allTrack = trackStorage.getAllTrack();
         int userSelection;
         out.println("Основное меню программы");
@@ -58,15 +58,15 @@ public class MenuController {
         }
     }
 
-    private void printAlltrack(List<Track> tracks) throws Exception {
+    private void printAlltrack(List<Track> tracks) {
         TrackStorage printTrackStorage = new TrackStorageImpl(tracks);
         for (Track track : tracks) {
             out.println(track);
         }
-        out.println("размер всех композиций "+ printTrackStorage.getSize());
+        out.println("размер всех композиций " + printTrackStorage.getSize());
     }
 
-    private void sortMenu() throws Exception {
+    private void sortMenu() {
         out.println("Меню сортировки");
         out.println("1 Сортировать по размеру");
         out.println("2 Сортировать по стилю");
@@ -92,14 +92,14 @@ public class MenuController {
         }
     }
 
-    private void filterMenu() throws Exception {
+    private void filterMenu() {
         out.println("Меню фильтра");
         out.println("1 Фильтровать по стилю");
         out.println("2 Фильтровать по размеру");
         out.println("3 Основное меню");
         int userSelection = Integer.valueOf(keyboardController.getUserInput());
         Filtrator filtrator;
-        List<Track> filterTrack;
+        List<Track> filterTrack = null;
         switch (userSelection) {
             case (1):
                 filtrator = new FiltratorImpl(trackStorage);
@@ -108,7 +108,11 @@ public class MenuController {
                 break;
             case (2):
                 filtrator = new FiltratorImpl(trackStorage);
-                filterTrack = filtrator.filter(new SizeFilter(LocalTime.parse("00:03:30"), LocalTime.parse("00:04:30")));
+                try {
+                    filterTrack = filtrator.filter(new SizeFilter(LocalTime.parse("00:03:30"), LocalTime.parse("00:04:30")));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 this.printAlltrack(filterTrack);
                 break;
             case (3):

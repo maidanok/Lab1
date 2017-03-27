@@ -7,7 +7,7 @@ import java.time.LocalTime;
 /**
  * Created by Pasha on 23.03.2017.
  */
-public class SizeFilter extends Filter{
+public class SizeFilter implements Filter{
     private LocalTime minSize;
     private LocalTime maxSize;
 

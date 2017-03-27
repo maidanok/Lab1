@@ -5,7 +5,7 @@ import datalayer.datamodel.Track;
 /**
  * Created by Pasha on 23.03.2017.
  */
-public class StyleFilter extends Filter {
+public class StyleFilter implements Filter {
     private String style;
 
     public StyleFilter(String style) {

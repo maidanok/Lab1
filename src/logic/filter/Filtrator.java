@@ -9,9 +9,9 @@ import java.util.List;
  */
 public interface Filtrator {
 
-    List<Track> filter(Filter filter) throws Exception;
+    List<Track> filter(Filter filter);
 
-    void filter (Filter filter, List<Track> destTrack) throws Exception;
+    void filter(Filter filter, List<Track> destTrack);
 
 
 }
