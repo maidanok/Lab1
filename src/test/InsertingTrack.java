@@ -16,7 +16,7 @@ public class InsertingTrack {
         TrackStorage trackStorage = new TrackStorageImpl();
 
         Track track = new Rock();
-        List<Track> myTrack=new ArrayList<>();
+        List<Track> myTrack = new ArrayList<>();
 /*
         track.setName("Cold Water");
         track.setSinger("Theory Of A Deadman");

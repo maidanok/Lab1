@@ -6,6 +6,7 @@ import java.time.LocalTime;
 import java.util.List;
 
 public interface TrackStorage {
+
     List<Track> getAllTrack();
 
     LocalTime getSize();

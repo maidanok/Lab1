@@ -10,9 +10,10 @@ import java.io.InputStreamReader;
 public class KeyboardController {
 
     public String getUserInput() {
-        String inputLine="";
+        String inputLine = null;
+        BufferedReader is;
         try {
-            BufferedReader is = new BufferedReader(new InputStreamReader(System.in));
+            is = new BufferedReader(new InputStreamReader(System.in));
             inputLine = is.readLine();
             if (inputLine.length() == 0) return "0";
         } catch (IOException e) {

@@ -10,6 +10,7 @@ import java.util.List;
  * Created by Pasha on 23.03.2017.
  */
 public class FiltratorImpl implements Filtrator {
+
     private TrackStorage storage;
 
     public FiltratorImpl(TrackStorage storage) {

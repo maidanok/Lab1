@@ -14,12 +14,12 @@ import java.util.List;
  * Created by Pasha on 23.03.2017.
  */
 public class TestFilter {
+
     public static void main(String[] args) throws Exception {
         TrackStorage trackStorage = new TrackStorageImpl();
-        Filtrator filtrator= new FiltratorImpl(trackStorage);
-        List <Track> filterTrack = filtrator.filter(new StyleFilter("рок"));
+        Filtrator filtrator = new FiltratorImpl(trackStorage);
+        List<Track> filterTrack = filtrator.filter(new StyleFilter("рок"));
         filterTrack.sort(new SortedBySize());
-
 
 
         System.out.println("Печатаем весь список");
@@ -29,7 +29,7 @@ public class TestFilter {
 
         System.out.println();
         System.out.println("Печатаем фильтрованный список");
-        for (Track track:filterTrack){
+        for (Track track : filterTrack) {
             System.out.println(track);
         }
     }

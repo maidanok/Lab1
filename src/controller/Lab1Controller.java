@@ -5,11 +5,11 @@ package controller;
  */
 
 
-
 public class Lab1Controller {
-    public static void main(String[] args) throws Exception{
+
+    public static void main(String[] args) {
         MenuController menuController = new MenuController();
-        menuController.shouMainMenu();
+        menuController.showMainMenu();
     }
 
 

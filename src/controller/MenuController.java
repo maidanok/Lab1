@@ -10,7 +10,6 @@ import logic.filter.StyleFilter;
 import logic.sort_service.SortedBySize;
 import logic.sort_service.SortedByStyle;
 
-import java.io.IOException;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -26,7 +25,7 @@ public class MenuController {
     public MenuController() {
     }
 
-    protected void shouMainMenu() {
+    protected void showMainMenu() {
         List<Track> allTrack = trackStorage.getAllTrack();
         int userSelection;
         out.println("Основное меню программы");
@@ -34,13 +33,14 @@ public class MenuController {
         out.println("1 Вывести весь список песен");
         out.println("2 Сортировать список песен");
         out.println("3 Выбрать песни из списка");
-        out.println("4 Выход");
+        out.println("4 Проиграть все мелодии");
+        out.println("5 Выход");
 
         userSelection = Integer.valueOf(keyboardController.getUserInput());
         switch (userSelection) {
             case (1): {
-                this.printAlltrack(allTrack);
-                this.shouMainMenu();
+                this.printAllTrack(allTrack);
+                this.showMainMenu();
                 break;
             }
             case (2): {
@@ -52,13 +52,18 @@ public class MenuController {
                 break;
             }
             case (4): {
+                trackStorage.playTracks();
+                this.showMainMenu();
+                break;
+            }
+            case (5): {
                 out.println("ByBy");
                 break;
             }
         }
     }
 
-    private void printAlltrack(List<Track> tracks) {
+    private void printAllTrack(List<Track> tracks) {
         TrackStorage printTrackStorage = new TrackStorageImpl(tracks);
         for (Track track : tracks) {
             out.println(track);
@@ -76,18 +81,18 @@ public class MenuController {
         switch (userSelection) {
             case (1): {
                 allTrack.sort(new SortedBySize());
-                this.printAlltrack(allTrack);
+                this.printAllTrack(allTrack);
                 this.sortMenu();
                 break;
             }
             case (2): {
                 allTrack.sort(new SortedByStyle());
-                this.printAlltrack(allTrack);
+                this.printAllTrack(allTrack);
                 this.sortMenu();
                 break;
             }
             case (3):
-                this.shouMainMenu();
+                this.showMainMenu();
                 break;
         }
     }
@@ -103,20 +108,20 @@ public class MenuController {
         switch (userSelection) {
             case (1):
                 filtrator = new FiltratorImpl(trackStorage);
-                filterTrack = filtrator.filter(new StyleFilter("рок"));
-                this.printAlltrack(filterTrack);
+                filterTrack = filtrator.filter(new StyleFilter("rock"));
+                this.printAllTrack(filterTrack);
                 break;
             case (2):
                 filtrator = new FiltratorImpl(trackStorage);
                 try {
-                    filterTrack = filtrator.filter(new SizeFilter(LocalTime.parse("00:03:30"), LocalTime.parse("00:04:30")));
+                    filterTrack = filtrator.filter(new SizeFilter(LocalTime.parse("00:03:10"), LocalTime.parse("00:04:30")));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                this.printAlltrack(filterTrack);
+                this.printAllTrack(filterTrack);
                 break;
             case (3):
-                this.shouMainMenu();
+                this.showMainMenu();
                 break;
         }
     }

@@ -14,9 +14,9 @@ public class TrackStorageImpl implements TrackStorage {
     public TrackStorageImpl() {
         try {
             myTracks = this.getAllTrack();
-        } catch (NullPointerException e){
+        } catch (NullPointerException e) {
             e.printStackTrace();
-            myTracks=new ArrayList<>();
+            myTracks = new ArrayList<>();
         }
     }
 
@@ -29,7 +29,7 @@ public class TrackStorageImpl implements TrackStorage {
     public List<Track> getAllTrack() {
         try {
             myTracks = (List<Track>) dataConnector.readData();
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
             e.printStackTrace();
         }
 
@@ -65,7 +65,7 @@ public class TrackStorageImpl implements TrackStorage {
 
     @Override
     public void playTracks() {
-        for (Track track:myTracks){
+        for (Track track : myTracks) {
             System.out.println(track.getMelody());
         }
     }

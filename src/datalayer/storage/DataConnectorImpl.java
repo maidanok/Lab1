@@ -6,7 +6,7 @@ import java.io.*;
  * Created by Pasha on 23.03.2017.
  */
 class DataConnectorImpl implements DataConnector {
-    //паттерн Singleton
+
     private DataConnectorImpl() {
 
     }

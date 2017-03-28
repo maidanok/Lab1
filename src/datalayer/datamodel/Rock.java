@@ -5,8 +5,8 @@ package datalayer.datamodel;
  */
 public class Rock extends Track {
 
-    public Rock (){
+    public Rock() {
         super.melody = "туц туц туц";
-        super.style="rock";
+        super.style = "rock";
     }
 }
